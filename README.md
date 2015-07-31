@@ -17,7 +17,7 @@ var _bind = {
   ".name" : "name"
 }
 ```
-The keys on the left side are simple CSS selectors. On the right side is the actual key or directive which will be attached to our DOM element so that it easily can be addressed later on. 
+The key on the left side is a simple CSS selector. On the right side is the actual key or directive which will be attached to our DOM element so that it easily can be addressed later on. 
 
 By default, Reflekt applies the data to the elements body. To apply it to an attribute we add the `@` at the end of the selector and then the name of the attribute:
 ```json
@@ -110,7 +110,7 @@ var _bind = {
 The data:
 ```js
 var _data = {
-  album  : "Best Of",
+  album  : "Greatest Hits",
   artist : "The Beatles",
   link   : "http://www.thebeatles.com/",
   songs  : [
@@ -134,7 +134,7 @@ r.$songs.filter(function(song, index){
 
 Output:
 ```html
-<h1>Best Of</h1>
+<h1>Greatest Hits</h1>
 <p>By <a href="http://www.thebeatles.com/">The Beatles</a></p>
 <ul>
   <li>1. Hey Jude</li>
