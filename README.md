@@ -53,10 +53,11 @@ The rendered template will look like this:
 r.set({
   name : "Mike McCartney"
 });
+```
 
+####Key Specific Methods
 
-// key specific methods:
-
+```js
 r.$name(); // get data
 r.$name("Mike McCartney"); // set data
 
