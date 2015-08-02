@@ -124,12 +124,13 @@ var _data = {
 The javascript:
 ```js
 var r = Reflekt({ bind : _bind});
-r.set(_data);
 
 // modify data before rendering
 r.$songs.filter(function(song, index){
   return index +". "+ song;
 });
+
+r.set(_data);
 ```
 
 Output:
