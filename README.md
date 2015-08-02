@@ -69,6 +69,9 @@ r.$name.filter(function(data, index){});
 
 // observe if data has been changed
 r.$name.observe(function(obj){});
+
+// attach an event handler function
+r.$name.on('click', function(e){});
 ```
 
 
