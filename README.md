@@ -1,6 +1,6 @@
 #Reflekt.js
 
-Reflekt is a logic-free, noMustache template engine for javascript. Reflekt is inspired by [pure.js](http://beebole.com/pure/), [plates](https://github.com/flatiron/plates/) and [DOMTemplate](http://camendesign.com/code/dom_templating).
+Reflekt is a logic-free, noMustache template engine for javascript. Reflekt is inspired by [pure.js](http://beebole.com/pure/), [plates](https://github.com/flatiron/plates/), [MTE](http://mootools.net/forge/p/moo_template_engine), [tmpl.js](https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/) and [DOMTemplate](http://camendesign.com/code/dom_templating).
 
 > Reflekt is currently in development and in its very early stages. This is a preview of what Reflekt is going to look like.
 
