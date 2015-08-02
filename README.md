@@ -44,7 +44,7 @@ var r = Reflekt({
 
 The rendered template will look like this:
 ```html
-<div class="demo">John Lellon</div>
+<div class="name">John Lellon</div>
 ```
 
 ####Change Data
