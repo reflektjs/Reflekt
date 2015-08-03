@@ -107,20 +107,20 @@ var _bind = {
   "h1" : "album",
   "a"  : "artist",
   "a@href" : "link",
-  "li" : "songs"
+  "li" : "song.title"
 }
 ```
 
 The data:
 ```js
 var _data = {
-  album  : "Greatest Hits",
-  artist : "The Beatles",
-  link   : "http://www.thebeatles.com/",
-  songs  : [
-    "Hey Jude",
-    "A Day in the Life",
-    "Let It Be"
+  album : "Greatest Hits",
+  artist: "The Beatles",
+  link  : "http://www.thebeatles.com/",
+  song  : [
+    { title : "Hey Jude", year : 1968 },
+    { title : "A Day in the Life", year : 1967 },
+    { title : "Let It Be", year : 1970 }
   ]
 }
 ```
@@ -130,7 +130,7 @@ The javascript:
 var r = Reflekt({ bind : _bind});
 
 // modify data before rendering
-r.$songs.filter(function(song, index){
+r.$song.title.filter(function(song, index){
   return index +". "+ song;
 });
 
@@ -153,16 +153,16 @@ If you want to assign data to a child element but loop its parent, like so:
 
 ```html
 <ul>
-  <li><a href="songLink">1. Hey Jude</a></li>
-  <li><a href="songLink">2. A Day in the Life</a></li>
+  <li><a href="link">1. Hey Jude</a></li>
+  <li><a href="link">2. A Day in the Life</a></li>
 </ul>
 ```
 You assign the values to `a` but repeat `li`. Then your binding object needs to look like this:
 ```js
 {
   "li" : {
-    "a" : "songs"
-    "a@href" : "songLinks"
+    "a" : "song.title"
+    "a@href" : "song.link"
   }
 }
 ```
