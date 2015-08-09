@@ -166,3 +166,19 @@ You assign the values to `a` but repeat `li`. Then your binding object needs to 
   }
 }
 ```
+
+####Map Keys
+
+Sometimes you might not be sure how your final data object will look like. To fix this problem, so that you don't always have to change the name of your key specific methods, you can use `->` in your binding object to do the mapping, like so:
+
+```js
+var _data = {
+  tmp : "Bill Murray",
+};
+
+var _bind = {
+  "h1" : "tmp -> key"
+}
+
+r.$key(); // "Bill Murray"
+```
