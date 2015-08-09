@@ -19,14 +19,6 @@ var _bind = {
 ```
 The key on the left side is a simple CSS selector. On the right side is the actual key or directive which will be attached to our DOM element so that it easily can be addressed later on. 
 
-By default, Reflekt applies the data to the elements body. To apply it to an attribute we add the `@` at the end of the selector and then the name of the attribute:
-```json
-{
-  "#id@class" : "class",
-  "#id@style.color" : "color"
-}
-```
-
 Our data object:
 ```js
 var _data = {
@@ -45,6 +37,14 @@ var r = Reflekt({
 The rendered template will look like this:
 ```html
 <div class="name">John Lellon</div>
+```
+
+By default, Reflekt applies the data to the elements body. To apply it to an attribute we add the `@` at the end of the selector and then the name of the attribute:
+```json
+{
+  "#id@class" : "class",
+  "#id@style.color" : "color"
+}
 ```
 
 ####Change Data
