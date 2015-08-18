@@ -158,9 +158,9 @@ If you want to assign data to a child element but loop its parent, like so:
 You assign the values to `a` but repeat `li`. Then your binding object needs to look like this:
 ```js
 {
-  "li" : {
-    "a" : "song.title"
-    "a@href" : "song.link"
+  "li" : { // <- repeat this node
+    "a" : "song.title"     // <- assign value to this node
+    "a@href" : "song.link" // <- assign value to this attribute
   }
 }
 ```
