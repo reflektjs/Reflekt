@@ -130,7 +130,7 @@ The javascript:
 var r = Reflekt({ bind : _bind});
 
 // modify data before rendering
-r.$song.title.filter(function(song, index){
+r.$song.$title.filter(function(song, index){
   return index +". "+ song;
 });
 
