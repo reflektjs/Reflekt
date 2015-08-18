@@ -130,8 +130,8 @@ The javascript:
 var r = Reflekt({ bind : _bind});
 
 // modify data before rendering
-r.$song.$title.filter(function(song, index){
-  return index +". "+ song;
+r.$song.$title.filter(function(title, index){
+  return index +". "+ title;
 });
 
 r.set(_data);
@@ -152,10 +152,8 @@ Output:
 If you want to assign data to a child element but loop its parent, like so:
 
 ```html
-<ul>
-  <li><a href="link">1. Hey Jude</a></li>
-  <li><a href="link">2. A Day in the Life</a></li>
-</ul>
+<li><a href="link">1. Hey Jude</a></li>
+<li><a href="link">2. A Day in the Life</a></li>
 ```
 You assign the values to `a` but repeat `li`. Then your binding object needs to look like this:
 ```js
