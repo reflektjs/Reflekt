@@ -180,3 +180,6 @@ var _bind = {
 
 r.$key(); // "Bill Murray"
 ```
+
+#**Help!**
+> I'm stuck with the development and need help! Mail me at *info[at]domizai.ch*.
