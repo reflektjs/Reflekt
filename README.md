@@ -65,7 +65,7 @@ r.$name("Mike McCartney"); // set data
 r.$name.prepend("John Lellon");
 r.$name.append("John Lellon");
 
-// modify data before applying
+// modify data before rendering
 r.$name.filter(function(data, index){});
 
 // observe if data has been changed
@@ -127,14 +127,14 @@ var _data = {
 
 The javascript:
 ```js
-var r = Reflekt({ bind : _bind});
+var r = Reflekt({ 
+  bind : _bind,
+  data : _data
+});
 
-// modify data before rendering
 r.$song.filter(function(song, index){
   return (index+1) +". "+ song.title;
 });
-
-r.set(_data);
 ```
 
 Output:
