@@ -14,10 +14,10 @@ The first step is to provide an object to tell Reflekt to which element it shoul
 
 ```js
 var _bind = {
-  ".name" : "name"
+  ".name": { "bind":"name" }
 }
 ```
-The key on the left side is a simple CSS selector. On the right side is the actual key or directive which will be attached to our DOM element so that it easily can be addressed later on. 
+The key on the left side is a simple CSS selector. ~~On the right side is the actual key or directive which will be attached to our DOM element so that it easily can be addressed later on.~~ 
 
 Our data object:
 ```js
@@ -39,11 +39,10 @@ The rendered template will look like this:
 <div class="name">John Lellon</div>
 ```
 
-By default, Reflekt applies the data to the elements body. To apply it to an attribute we add the `@` at the end of the selector and then the name of the attribute:
+~~By default, Reflekt applies the data to the elements body. To apply it to an attribute we add the `@` at the end of the selector and then the name of the attribute:~~
 ```json
 {
-  "#id@class" : "class",
-  "#id@style.color" : "color"
+  "#id": { "style-color":"color" }
 }
 ```
 
@@ -104,10 +103,9 @@ The template:
 The binding object:
 ```js
 var _bind = {
-  "h1" : "album",
-  "a"  : "artist",
-  "a@href" : "link",
-  "li" : "song.title"
+  "h1": { "bind":album" },
+  "a" : { "bind":"artist", "attr-href":"link" },
+  "li": { "bind":"$index +' '+ song.title", "if":"song.year >= 1970" }
 }
 ```
 
@@ -127,14 +125,9 @@ var _data = {
 
 The javascript:
 ```js
-var r = Reflekt({ 
-  bind : _bind,
-  data : _data
-});
-
-r.$song.filter(function(song, index){
-  return (index+1) +". "+ song.title;
-});
+Reflekt({ 
+  bind: _bind 
+})(data);
 ```
 
 Output:
@@ -143,8 +136,7 @@ Output:
 <p>By <a href="http://www.thebeatles.com/">The Beatles</a></p>
 <ul>
   <li>1. Hey Jude</li>
-  <li>2. A Day in the Life</li>
-  <li>3. Let It Be</li>
+  <li>2. Let It Be</li>
 </ul>
 ```
 -
@@ -158,9 +150,8 @@ If you want to assign data to a child element but loop its parent, like so:
 You assign the values to `a` but repeat `li`. Then your binding object needs to look like this:
 ```js
 {
-  "li" : { // <- repeat this node
-    "a" : "song.title"     // <- assign value to this node
-    "a@href" : "song.link" // <- assign value to this attribute
+  "li": { // <- repeat this node
+    "a": { "bind":"song.title", "attr-href":"song.link" }
   }
 }
 ```
