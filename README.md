@@ -103,7 +103,7 @@ The template:
 The binding object:
 ```js
 var _bind = {
-  "h1": { "bind":album" },
+  "h1": { "bind":"album" },
   "a" : { "bind":"artist", "attr-href":"link" },
   "li": { "bind":"$index +' '+ song.title", "if":"song.year >= 1970" }
 }
