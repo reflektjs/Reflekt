@@ -1,6 +1,6 @@
 #Reflekt.js
 
-Reflekt is a logic-free, noMustache template engine for javascript. Reflekt is inspired by [pure.js](http://beebole.com/pure/), [plates](https://github.com/flatiron/plates/), [MTE](http://mootools.net/forge/p/moo_template_engine), [tmpl.js](https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/), [tempan](https://github.com/watoki/tempan), [Weld](https://github.com/tmpvar/weld) and [DOMTemplate](http://camendesign.com/code/dom_templating).
+Reflekt is a logic-free, noMustache template engine for javascript. Reflekt is inspired by [pure.js](http://beebole.com/pure/), [plates](https://github.com/flatiron/plates/), [MTE](http://mootools.net/forge/p/moo_template_engine), [tmpl.js](https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/), [AngularJS](https://angularjs.org/), [tempan](https://github.com/watoki/tempan), [Weld](https://github.com/tmpvar/weld) and [DOMTemplate](http://camendesign.com/code/dom_templating).
 
 > Reflekt is currently in development and in its very early stages. This is a preview of what Reflekt is going to look like.
 
@@ -46,32 +46,35 @@ The rendered template will look like this:
 }
 ```
 
-####Change Data
+####Core Methods
 
 ```js
-r.set({
-  name : "Mike McCartney"
+r(); // get data
+r("name"); // get a specific data key
+
+// set data
+r({ name:"Mike McCartney" }); 
+// or
+r("name", "Mike McCartney");
+
+// computed properties
+r("fullName", function(){
+  return r("firstName") +" "+ r("lastName");
 });
-```
+// Reflekt tracks dependencies and automatically updates fullName
+// whenever firstName or lastName changes.
 
-####Key Specific Methods
-
-```js
-r.$name(); // get data
-r.$name("Mike McCartney"); // set data
-
-// prepend/append data
-r.$name.prepend("John Lellon");
-r.$name.append("John Lellon");
-
-// modify data before rendering
-r.$name.filter(function(data, index){});
+// create a custom filter
+r.filter('reverse', function(input, arg1){
+  return input.split('').reverse().join(arg1!==undefined?arg1:'');
+});
 
 // observe if data has been changed
-r.$name.observe(function(obj){});
+r.observe("name", function(obj){});
 
-// attach an event handler function
-r.$name.on('click', function(e){});
+// attach an event handler function to an element
+// only works if an id is given -> { id:"name" }
+r.$name.on("click", function(e){});
 ```
 
 
@@ -80,7 +83,7 @@ r.$name.on('click', function(e){});
 Simply provide an array and Reflekt will repeat the element &nbsp; ; )
 
 ```js
-r.$name(["Mike McCartney", "John Lellon"]);
+r("name", ["Mike McCartney", "John Lellon"]);
 ```
 
 ```html
@@ -105,7 +108,7 @@ The binding object:
 var _bind = {
   "h1": { "bind":"album" },
   "a" : { 
-    "bind":"artist", 
+    "bind":"artist | uppercase", 
     "attr-href":"link" 
   },
   "li": { 
@@ -139,7 +142,7 @@ Reflekt({
 Output:
 ```html
 <h1>Greatest Hits</h1>
-<p>By <a href="http://www.thebeatles.com/">The Beatles</a></p>
+<p>By <a href="http://www.thebeatles.com/">THE BEATLES</a></p>
 <ul>
   <li>1. Hey Jude</li>
   <li>2. Let It Be</li>
