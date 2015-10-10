@@ -39,7 +39,6 @@ The rendered template will look like this:
 <div class="name">John Lellon</div>
 ```
 
-~~By default, Reflekt applies the data to the elements body. To apply it to an attribute we add the `@` at the end of the selector and then the name of the attribute:~~
 ```json
 {
   "#id": { "style-color":"color" }
