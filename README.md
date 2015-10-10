@@ -169,7 +169,7 @@ You assign the values to `a` but repeat `li`. Then your binding object needs to 
 
 ## Backend Rendering
 
-Ok, but what if you're a backend guy? Good news, you wouldn't have to change a thing – not with your template nor with the binding object! (Exeptions are custom filters)
+Ok, but what if you're a backend guy? Good news, you wouldn't have to change a thing – not your template nor the binding object! (Exeptions are custom filters)
 
 ```php
 echo Reflekt::render(array(
