@@ -1,10 +1,10 @@
-#Reflekt.js
+# Reflekt.js
 
 Reflekt is a logic-free, noMustache template engine for javascript. Reflekt is inspired by [pure.js](http://beebole.com/pure/), [plates](https://github.com/flatiron/plates/), [MTE](http://mootools.net/forge/p/moo_template_engine), [tmpl.js](https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/), [AngularJS](https://angularjs.org/), [tempan](https://github.com/watoki/tempan), [Weld](https://github.com/tmpvar/weld) and [DOMTemplate](http://camendesign.com/code/dom_templating).
 
 > Reflekt is currently in development and in its very early stages. This is a preview of what Reflekt is going to look like.
 
-##Example
+## Example
 
 The template:
 ```html
@@ -17,7 +17,6 @@ var _bind = {
   ".name": { "bind":"name" }
 }
 ```
-The key on the left side is a simple CSS selector. ~~On the right side is the actual key or directive which will be attached to our DOM element so that it easily can be addressed later on.~~ 
 
 Our data object:
 ```js
@@ -45,7 +44,7 @@ The rendered template will look like this:
 }
 ```
 
-####Core Methods
+## Core Methods
 
 ```js
 r(); // get data
@@ -77,7 +76,7 @@ r.$name.on("click", function(e){});
 ```
 
 
-####Repeat An Element
+#### Repeat An Element
 
 Simply provide an array and Reflekt will repeat the element &nbsp; ; )
 
@@ -91,7 +90,7 @@ r("name", ["Mike McCartney", "John Lellon"]);
 ```
 -
 
-##Extended Example
+## Extended Example
 
 The template:
 ```html
@@ -166,4 +165,16 @@ You assign the values to `a` but repeat `li`. Then your binding object needs to 
     }
   }
 }
+```
+
+## Backend Rendering
+
+Ok, but what if you're a backend guy? Good news, you wouldn't have to change a thing – not with your template nor with the binding object! (Exeptions are custom filters)
+
+```php
+echo Reflekt::render(array(
+  "template" => 'index.html',
+  "bind" => 'bind.json',
+  "data" => $data
+));
 ```
