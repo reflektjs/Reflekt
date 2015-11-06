@@ -162,9 +162,17 @@ You assign the values to `a` but repeat `li`. Then your binding object needs to 
 Ok, but what if you're a backend guy? Good news, you wouldn't have to change a thing – not your template nor the binding object! (Exeptions are custom filters)
 
 ```php
-echo Reflekt::render(array(
-  "template" => 'index.html',
-  "bind" => 'bind.json',
-  "data" => $data
-));
+echo Reflekt('index.html', 'bind.json')->set($data);
 ```
+
+## Directives
+
+A directive is basically an instruction to attach a specific behavior on a DOM element. For instance `{ "bind": "items"}` will assign the value of the property `items` from the data object `{ "items": [] }` to the innerHTML of an element.
+
+|Key    |Example|Description|
+|:------|:------|:----------|
+|bind   |{ bind: "items\|filter()" }|Assign data to the text value of a node| 
+|if     |{ if: "items.length > 5" }|Bind only if condition applies|
+|repeat |{ repeat: "item:items" }|Explicitly repeat a given item|
+|attr-* |{ attr-href: "items" }|Set the value of an attribute|
+|on-*   |{ on-click: function(){} }|Bind an event handler function to a node|
