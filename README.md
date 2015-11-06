@@ -62,7 +62,7 @@ r.get(url)
 
 // create a custom filter
 // { bind: "name | reverse" }
-r.filter('reverse', function(input, arg1){
+Reflekt.filter('reverse', function(input, arg1){
   return input.split('').reverse().join(arg1!==undefined?arg1:'');
 });
 ```
