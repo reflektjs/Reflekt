@@ -13,24 +13,22 @@ The template:
 The first step is to provide an object to tell Reflekt to which element it should bind to. The object is a simple json object which might look like this:
 
 ```js
-var _bind = {
+var bind = {
   ".name": { "bind":"name" }
 }
 ```
 
 Our data object:
 ```js
-var _data = {
+var data = {
   name : "John Lellon"
 }
 ```
 
 How to render it? Pretty straight forward:
 ```js
-var r = Reflekt({
-  bind : _bind,
-  data : _data
-});
+var r = Reflekt(bind);
+r(data);
 ```
 
 The rendered template will look like this:
@@ -38,11 +36,6 @@ The rendered template will look like this:
 <div class="name">John Lellon</div>
 ```
 
-```json
-{
-  "#id": { "style-color":"color" }
-}
-```
 
 ## Core Methods
 
@@ -62,17 +55,16 @@ r("fullName", function(){
 // Reflekt tracks dependencies and automatically updates fullName
 // whenever firstName or lastName changes.
 
+// load data
+r.get(url)
+  .success(function(scope){})
+  .fail(function(scope){});
+
 // create a custom filter
+// { bind: "name | reverse" }
 r.filter('reverse', function(input, arg1){
   return input.split('').reverse().join(arg1!==undefined?arg1:'');
 });
-
-// observe if data has been changed
-r.observe("name", function(obj){});
-
-// attach an event handler function to an element
-// only works if an id is given -> { id:"name" }
-r.$name.on("click", function(e){});
 ```
 
 
@@ -103,7 +95,7 @@ The template:
 
 The binding object:
 ```js
-var _bind = {
+var bind = {
   "h1": { "bind":"album" },
   "a" : { 
     "bind":"artist | uppercase", 
@@ -118,7 +110,7 @@ var _bind = {
 
 The data:
 ```js
-var _data = {
+var data = {
   album : "Greatest Hits",
   artist: "The Beatles",
   link  : "http://www.thebeatles.com/",
@@ -132,9 +124,7 @@ var _data = {
 
 The javascript:
 ```js
-Reflekt({ 
-  bind: _bind 
-})(data);
+Reflekt(bind)(data);
 ```
 
 Output:
