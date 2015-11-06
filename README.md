@@ -176,3 +176,35 @@ A directive is basically an instruction to attach a specific behavior on a DOM e
 |repeat |{ repeat: "item:items" }|Explicitly repeat a given item|
 |attr-* |{ attr-href: "items" }|Set the value of an attribute|
 |on-*   |{ on-click: function(){} }|Bind an event handler function to a node|
+
+
+## A Comparison to Angular
+
+Angular
+
+```html
+<ul class="items" ng-app="app" ng-controller="ctrl">
+	<li ng-if="!items.length">Sorry, no items found.</li>
+	<li ng-repeat="item in items">{{item.name}}</li>
+</ul>
+
+<script>
+	angular.module('app', []).controller('ctrl', function($scope, $http){
+		$http.get('items.php').success(function(data){
+			$scope.items = data;
+		});
+	});
+</script>
+```
+
+Reflekt
+
+```html
+<ul class="items">
+	<li>Sorry, no items found.</li>
+</ul>
+
+<script>
+	Reflekt({ ".items":{ if:"items", bind:"items.name" }}).get('items.php');
+</script>
+```
