@@ -190,7 +190,7 @@ Angular
 
 <script>
 	angular.module('app', []).controller('ctrl', function($scope, $http){
-		$http.get('items.php').success(function(data){
+		$http.get(url).success(function(data){
 			$scope.items = data;
 		});
 	});
@@ -205,6 +205,6 @@ Reflekt
 </ul>
 
 <script>
-	Reflekt({ ".items":{ if:"items", bind:"items.name" }}).get('items.php');
+	Reflekt({ ".items li":{ bind:"items.name" }}).get(url);
 </script>
 ```
