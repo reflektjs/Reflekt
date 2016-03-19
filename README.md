@@ -261,7 +261,7 @@ Reflekt
 		
 		this.add = function(){ 
   			if(this.formTodoText !== undefined){
-	      			this.todos.push({ title: this.formTodoText, done: false });
+				this.todos.push({ title: this.formTodoText, done: false });
 				this.formTodoText = defaultTodoText;
 			}
 	  	};
