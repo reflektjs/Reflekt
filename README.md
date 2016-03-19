@@ -57,8 +57,11 @@ r("fullName", function(){
 
 // load data
 r.get(url)
-  .success(function(scope){})
-  .fail(function(scope){});
+  .success(function(data){})
+  .fail(function(){});
+
+// add a controller
+r.controller(function(){});
 
 // create a custom filter
 // { bind: "name | reverse" }
