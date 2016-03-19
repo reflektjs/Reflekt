@@ -183,16 +183,39 @@ A directive is basically an instruction to attach a specific behavior on a DOM e
 Angular
 
 ```html
-<ul class="items" ng-app="app" ng-controller="ctrl">
-	<li ng-if="!items.length">Sorry, no items found.</li>
-	<li ng-repeat="item in items">{{item.name}}</li>
-</ul>
+<input ng-model="formTodoText">
+<button ng-click="add()">Add Task</button>
+<div ng-repeat="todo in todos">
+  <label>
+      <input type="checkbox" ng-model="todo.done">
+      <span class="done-{{todo.done}}">{{todo.title}}</span>
+    </label>
+    <button ng-click="clear($index)">Clear</button>
+</div>
+<div ng-if="!todos.length">{{message}}</div>
 
 <script>
-	angular.module('app', []).controller('ctrl', function($scope, $http){
-		$http.get(url).success(function(data){
-			$scope.items = data;
+	angular.module('todoApp').controller('TodoCtrl',function($scope, $http){
+		var defaultTodoText = $scope.formTodoText = "New Task";
+
+  		$http.get('todos.php').success(function(todos){
+			$scope.todos = data.todos;
+			$scope.formTodoText = data.formTodoText;
+			$scope.message = data.message;
+		}).fail(function(){
+			$scope.message = "Failed to load tasks.";
 		});
+
+		$scope.add = function(){
+		  	if($scope.formTodoText !== undefined){
+				$scope.todos.push({ title:$scope.formTodoText, done:false });
+				$scope.formTodoText = defaultTodoText;
+			}
+		};
+		  
+		$scope.clear = function(index) {
+			$scope.todos.splice(index ,1);
+		};
 	});
 </script>
 ```
@@ -200,11 +223,68 @@ Angular
 Reflekt
 
 ```html
-<ul class="items">
-	<li>Sorry, no items found.</li>
-</ul>
+<input id="task-title">
+<button id="addTask">Add Task</button>
+<div class="todo">
+	<label>
+		<input type="checkbox">
+		<span class="title"></span>
+	</label>
+	<button>Clear</button>
+</div>
+<div id="allDone"></div>
 
 <script>
-	Reflekt({ ".items li":{ bind:"items.name" }}).get(url);
+	Reflekt({
+		"#task-title":{ bind: "formTodoText" },
+		"#addTask":{ onclick: "add()" },
+		".todo":{
+			bind: "todos",
+	  		"input":{ bind: "done" },
+	  		".title":{ 
+	  			bind: "title", 
+	  			class: "'done-'done" 
+	  		},
+	  		"button":{ onclick: "clear($index)" } 
+		},
+		"#allDone":{ 
+			if: "!todos", 
+			bind: "message" 
+		}
+	}).get('todos.php').fail(function(scope){
+		this.message = "Failed to load tasks.";
+	}).controller(function(){
+		var defaultTodoText = this.formTodoText;
+		
+		this.add = function(){ 
+  			if(this.formTodoText !== undefined){
+	      			this.todos.push({ title: this.formTodoText, done: false });
+	      			this.formTodoText = defaultTodoText;
+	    		}
+	  	};
+	  	
+		this.clear = function(index){ 
+			this.todos.splice(index, 1);
+		};
+	});
 </script>
+```
+
+The data object
+
+```json
+{
+	"formTodoText": "New Task",
+	"message": "Hooray, nothing to do!",
+	"tasks":[
+		{ 
+				"title": "Homework",
+				"done": false
+		},
+		{ 
+				"title": "Clean kitchen",
+				"done": false
+		},
+	]
+}
 ```
