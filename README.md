@@ -1,6 +1,6 @@
 # Reflekt.js
 
-Reflekt is a logic-free, noMustache template engine for javascript. Reflekt is inspired by [pure.js](http://beebole.com/pure/), [plates](https://github.com/flatiron/plates/), [MTE](http://mootools.net/forge/p/moo_template_engine), [tmpl.js](https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/), [AngularJS](https://angularjs.org/), [tempan](https://github.com/watoki/tempan), [Weld](https://github.com/tmpvar/weld) and [DOMTemplate](http://camendesign.com/code/dom_templating).
+Reflekt is a logic-free template engine for javascript and php which explicitly separates markup from declaration from behaviour. Reflekt is inspired by [pure.js](http://beebole.com/pure/), [plates](https://github.com/flatiron/plates/), [MTE](http://mootools.net/forge/p/moo_template_engine), [tmpl.js](https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/), [AngularJS](https://angularjs.org/), [tempan](https://github.com/watoki/tempan), [Weld](https://github.com/tmpvar/weld) and [DOMTemplate](http://camendesign.com/code/dom_templating).
 
 > Reflekt is currently in development and in its very early stages. This is a preview of what Reflekt is going to look like.
 
@@ -184,6 +184,7 @@ A directive is basically an instruction to attach a specific behavior on a DOM e
 Angular
 
 ```html
+<!-- declarative markup, yuk! -->
 <input ng-model="formTodoText">
 <button ng-click="add()">Add Task</button>
 <div ng-repeat="todo in todos">
@@ -196,6 +197,7 @@ Angular
 <div ng-if="!todos.length">{{message}}</div>
 
 <script>
+	// behavior
 	angular.module('todoApp').controller('TodoCtrl',function($scope, $http){
 		var defaultTodoText = $scope.formTodoText = "New Task";
 
@@ -224,6 +226,7 @@ Angular
 Reflekt
 
 ```html
+<!-- markup -->
 <input id="task-title">
 <button id="addTask">Add Task</button>
 <div class="todo">
@@ -236,6 +239,7 @@ Reflekt
 <div id="allDone"></div>
 
 <script>
+	// declaration
 	var bind = {
 		"#task-title":{ bind: "formTodoText" },
 		"#addTask":{ onclick: "add()" },
@@ -254,6 +258,7 @@ Reflekt
 		}
 	};
 	
+	// behavior
 	Reflekt(bind).get(url).fail(function(scope){
 		this.message = "Failed to load tasks.";
 	}).controller(function(){
