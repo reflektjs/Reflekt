@@ -236,7 +236,7 @@ Reflekt
 <div id="allDone"></div>
 
 <script>
-	Reflekt({
+	var bind = {
 		"#task-title":{ bind: "formTodoText" },
 		"#addTask":{ onclick: "add()" },
 		".todo":{
@@ -252,7 +252,9 @@ Reflekt
 			if: "!todos", 
 			bind: "message" 
 		}
-	}).get('todos.php').fail(function(scope){
+	};
+	
+	Reflekt(bind).get('todos.php').fail(function(scope){
 		this.message = "Failed to load tasks.";
 	}).controller(function(){
 		var defaultTodoText = this.formTodoText;
