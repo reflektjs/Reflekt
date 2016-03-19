@@ -176,10 +176,8 @@ A directive is basically an instruction to attach a specific behavior on a DOM e
 |:------|:------|:----------|
 |bind   |{ bind: "items\|filter()" }|Assign data to the text value of a node| 
 |if     |{ if: "$index < 5" }|Bind only if condition applies|
-|repeat |{ repeat: "item:items" }|Explicitly repeat a given item|
 |attr-* |{ attr-href: "items" }|Set the value of an attribute|
-|on-*   |{ on-click: function(){} }|Bind an event handler function to a node|
-
+(more to come)
 
 ## A Comparison to Angular
 
