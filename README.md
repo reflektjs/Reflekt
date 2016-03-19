@@ -99,14 +99,14 @@ The template:
 The binding object:
 ```js
 var bind = {
-  "h1": { "bind":"album" },
-  "a" : { 
-    "bind":"artist | uppercase", 
-    "attr-href":"link" 
+  h1: { "bind":"album" },
+  a : { 
+    bind:"artist | uppercase", 
+    'attr-href':"link" 
   },
-  "li": { 
-    "bind":"$index +' '+ songs.title", 
-    "if":"songs.year <= 1968"
+  li: { 
+    bind:"$index +' '+ songs.title", 
+    if:"songs.year <= 1968"
   }
 }
 ```
