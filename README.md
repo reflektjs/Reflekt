@@ -37,16 +37,18 @@ The rendered template will look like this:
 ```
 
 
-## Core Methods
+## Basic Core Methods
 
 ```js
-r(); // get data
+r(); // get all the data
 r("name"); // get a specific data key
 
 // set data
-r({ name:"Mike McCartney" }); 
-// or
-r("name", "Mike McCartney");
+r("name", "Mike McCartney"); 
+
+// append or remove an item
+r.append("name", "John Lennon");
+r.remove("name", index);
 
 // computed properties
 r("fullName", function(){
@@ -259,21 +261,21 @@ Reflekt
 	};
 	
 	// behavior
-	Reflekt(bind).get(url).fail(function(scope){
-		this.message = "Failed to load tasks.";
-	}).controller(function(){
-		var defaultTodoText = this.formTodoText;
+	Reflekt(bind).get(url).fail(function(r){
+		r('message', 'Failed to load tasks.');
+	}).controller(function(r){
+		var defaultTodoText = r('formTodoText');
 		
-		this.add = function(){ 
-  			if(this.formTodoText !== undefined){
-				this.todos.push({ title: this.formTodoText, done: false });
-				this.formTodoText = defaultTodoText;
+		r('add', function(){ 
+  			if(r('formTodoText') !== undefined){
+				r.append('todos', { title: r('formTodoText'), done: false });
+				r('formTodoText', defaultTodoText);
 			}
-	  	};
+	  	});
 	  	
-		this.clear = function(index){ 
-			this.todos.splice(index, 1);
-		};
+		r('clear', function(index){ 
+			r.remove('todos', index);
+		});
 	});
 </script>
 ```
