@@ -203,7 +203,7 @@ Angular
 	angular.module('todoApp').controller('TodoCtrl',function($scope, $http){
 		var defaultTodoText = $scope.formTodoText = "New Task";
 
-  		$http.get(url).success(function(todos){
+  		$http.get("url/data.json").success(function(todos){
 			$scope.todos = data.todos;
 			$scope.formTodoText = data.formTodoText;
 			$scope.message = data.message;
@@ -261,9 +261,7 @@ Reflekt
 	};
 	
 	// behavior
-	Reflekt(bind).get(url).fail(function(r){
-		r('message', 'Failed to load tasks.');
-	}).controller(function(r){
+	Reflekt(bind).controller(function(r){
 		var defaultTodoText = r('formTodoText');
 		
 		r('add', function(){ 
@@ -276,6 +274,8 @@ Reflekt
 		r('clear', function(index){ 
 			r.remove('todos', index);
 		});
+	}).get("url/data.json").fail(function(r){
+		r('message', 'Failed to load tasks.');
 	});
 </script>
 ```
