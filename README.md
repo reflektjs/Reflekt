@@ -264,16 +264,16 @@ Reflekt
 	Reflekt(bind).controller(function(r){
 		var defaultTodoText = r('formTodoText');
 		
-		r('add', function(){ 
+		this.add = function(){ 
   			if(r('formTodoText') !== undefined){
 				r.append('todos', { title: r('formTodoText'), done: false });
 				r('formTodoText', defaultTodoText);
 			}
-	  	});
+	  	};
 	  	
-		r('clear', function(index){ 
+		this.clear = function(index){ 
 			r.remove('todos', index);
-		});
+		};
 	}).get("url/data.json").fail(function(r){
 		r('message', 'Failed to load tasks.');
 	});
